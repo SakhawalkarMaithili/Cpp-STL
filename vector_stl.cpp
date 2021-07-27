@@ -1,4 +1,14 @@
 /*
+
+    =======================================VECTOR IS A RESIZABLE ARRAY=========================================
+
+
+*/
+
+
+
+
+/*
 Iterators
 
 1. begin() – Returns an iterator pointing to the first element in the vector
@@ -79,7 +89,49 @@ vector::insert()
 
 using namespace std;
 
+
+void display (vector <int> &v)
+{
+    for (int i = 0; i < v.size(); i++)
+    {
+        cout << v[i] << " ";
+        cout << v.at(i) << " ";                 // same thing as above but different syntax
+    }
+    cout << endl;
+}
+
 main ()
 {
-    vector <int> vec;
+    vector <int> vec;                   // declaration of a vector
+    int element;
+
+    // push back
+    for (int i = 0; i < 5; i++)
+    {
+        cout << "Enter element to be added to vector: ";
+        cin >> element;
+        vec.push_back (element);
+    }
+
+    // size of a vector
+    cout << "\nSize of the vector is " << vec.size() << endl;
+
+    display (vec);
+
+    // pop
+    vec.pop_back();                     // removes last element
+
+    display(vec);
+
+
+
+    // insert
+    // for this, we need an iterator as it is the first parameter for insert() method
+    vector <int> :: iterator itr = vec.begin();                 // itr points to begin of vector
+    vec.insert (itr + 2, 12);                                   // inserts 12 at 2nd (starting from 0) position
+
+    display(vec);
+
+    vec.insert (itr + 2, 3, 15);                                // inserts 15 3 times starting from position 2
+    display (vec);
 }
